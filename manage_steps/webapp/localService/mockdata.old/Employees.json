@@ -1,0 +1,17 @@
+[
+  {
+    "UserID": "CKISSO",
+    "DateOfBirth": "1988-02-10T00:00:00",
+    "RegistrationDate": "2021-02-10T00:00:00"
+  },
+  {
+    "UserID": "USER02",
+    "DateOfBirth": "1965-02-10T00:00:00",
+    "RegistrationDate": "2021-03-03T00:00:00"
+  },
+  {
+    "UserID": "USER03",
+    "DateOfBirth": "1978-02-10T00:00:00",
+    "RegistrationDate": "2021-03-03T00:00:00"
+  }
+]

@@ -1,0 +1,26 @@
+<mvc:View
+    controllerName="cgi.demo.employee.steps.register.stepsregistration.controller.Home"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:core="sap.ui.core"
+>
+		<semantic:SemanticPage id="Home">
+			<semantic:titleContent>
+				<HBox>
+					<core:Icon 
+						src="sap-icon://family-care" 
+						size="40px"
+						class="sapUiTinyMargin"/>
+					<VBox class= "sapUiTinyMargin">
+						<Title text="{i18n>appTitle} " />
+						<Text text="{i18n>appDescription}" />
+					</VBox>
+				</HBox>
+			</semantic:titleContent>
+			<semantic:content>
+
+			</semantic:content>
+		</semantic:SemanticPage>
+</mvc:View>

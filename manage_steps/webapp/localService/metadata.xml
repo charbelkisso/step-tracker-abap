@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://54.84.72.74:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://54.84.72.74:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://54.84.72.74:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://54.84.72.74:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://54.84.72.74:50000/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_ztrc_steps_api" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="EmployeesType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserID"/>
+                </Key>
+                <Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="User" sap:quickinfo="User Name in User Master Record"/>
+                <Property Name="DateOfBirth" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date of Birth"/>
+                <Property Name="RegistrationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Registration Date" sap:quickinfo="Registration date"/>
+                <NavigationProperty Name="to_Steps" Relationship="cds_ztrc_steps_api.assoc_24C678D088DDD8C31CB105C1AFB924BA" FromRole="FromRole_assoc_24C678D088DDD8C31CB105C1AFB924BA" ToRole="ToRole_assoc_24C678D088DDD8C31CB105C1AFB924BA"/>
+            </EntityType>
+            <EntityType Name="StepsType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StepID"/>
+                    <PropertyRef Name="UserID"/>
+                </Key>
+                <Property Name="StepID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="ID" sap:quickinfo="Step record id"/>
+                <Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="User" sap:quickinfo="User Name in User Master Record"/>
+                <Property Name="StepCount" Type="Edm.Int16" sap:label="Steps Count"/>
+                <Property Name="RegistrationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Registration Date" sap:quickinfo="Registration date"/>
+                <Property Name="RegistrationTime" Type="Edm.Time" Precision="0" sap:label="Registration time"/>
+                <NavigationProperty Name="to_employeeData" Relationship="cds_ztrc_steps_api.assoc_457D270D11C60D34C141205BBC29546A" FromRole="FromRole_assoc_457D270D11C60D34C141205BBC29546A" ToRole="ToRole_assoc_457D270D11C60D34C141205BBC29546A"/>
+            </EntityType>
+            <Association Name="assoc_24C678D088DDD8C31CB105C1AFB924BA" sap:content-version="1">
+                <End Type="cds_ztrc_steps_api.EmployeesType" Multiplicity="1" Role="FromRole_assoc_24C678D088DDD8C31CB105C1AFB924BA">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="cds_ztrc_steps_api.StepsType" Multiplicity="*" Role="ToRole_assoc_24C678D088DDD8C31CB105C1AFB924BA"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_24C678D088DDD8C31CB105C1AFB924BA">
+                        <PropertyRef Name="UserID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_24C678D088DDD8C31CB105C1AFB924BA">
+                        <PropertyRef Name="UserID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_457D270D11C60D34C141205BBC29546A" sap:content-version="1">
+                <End Type="cds_ztrc_steps_api.StepsType" Multiplicity="1" Role="FromRole_assoc_457D270D11C60D34C141205BBC29546A"/>
+                <End Type="cds_ztrc_steps_api.EmployeesType" Multiplicity="1" Role="ToRole_assoc_457D270D11C60D34C141205BBC29546A"/>
+            </Association>
+            <EntityContainer Name="cds_ztrc_steps_api_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Employees" EntityType="cds_ztrc_steps_api.EmployeesType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="Steps" EntityType="cds_ztrc_steps_api.StepsType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_24C678D088DDD8C31CB105C1AFB924BA" Association="cds_ztrc_steps_api.assoc_24C678D088DDD8C31CB105C1AFB924BA" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Employees" Role="FromRole_assoc_24C678D088DDD8C31CB105C1AFB924BA"/>
+                    <End EntitySet="Steps" Role="ToRole_assoc_24C678D088DDD8C31CB105C1AFB924BA"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_457D270D11C60D34C141205BBC29546A" Association="cds_ztrc_steps_api.assoc_457D270D11C60D34C141205BBC29546A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Steps" Role="FromRole_assoc_457D270D11C60D34C141205BBC29546A"/>
+                    <End EntitySet="Employees" Role="ToRole_assoc_457D270D11C60D34C141205BBC29546A"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="cds_ztrc_steps_api.cds_ztrc_steps_api_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://54.84.72.74:50000/sap/opu/odata/sap/ZTRC_STEP_TRACKER_API/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://54.84.72.74:50000/sap/opu/odata/sap/ZTRC_STEP_TRACKER_API/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

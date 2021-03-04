@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.scp/
+.env
+archive.zip
