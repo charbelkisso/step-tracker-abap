@@ -10,7 +10,16 @@
 		"title": "",
 		"description": "",
 		"resources": "resources.json",
-		"ach": "ach"
+		"ach": "ach",
+		"dataSources": {
+			"mainDataSource": {
+				"uri": "/sap/opu/odata/sap/ZTRC_STEP_TRACKER_API/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0"
+				}
+			}
+		}
 	},
 	"sap.ui": {
 		"technology": "UI5",
@@ -30,7 +39,7 @@
 	},
 
 	"sap.ui5": {
-		"flexEnabled": true,
+		"flexEnabled": false,
 		"rootView": {
 			"viewName": "cgi.demo.employee.steps.register.stepsregistration.view.App",
 			"type": "XML",
@@ -42,7 +51,8 @@
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.ui.layout": {}
+				"sap.ui.layout": {},
+				"sap.f": {}
 			}
 		},
 		"contentDensities": {
@@ -50,6 +60,13 @@
 			"cozy": true
 		},
 		"models": {
+			"": {
+				"dataSource": "mainDataSource",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "OneWay"
+				}
+			},
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {

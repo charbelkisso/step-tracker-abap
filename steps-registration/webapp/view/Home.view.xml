@@ -1,4 +1,5 @@
-<mvc:View
+<mvc:View xmlns:layout="sap.ui.layout" 
+	xmlns:tnt="sap.tnt"
     controllerName="cgi.demo.employee.steps.register.stepsregistration.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
@@ -8,19 +9,75 @@
 >
 		<semantic:SemanticPage id="Home">
 			<semantic:titleContent>
-				<HBox>
+				<HBox id="headerContainer">
 					<core:Icon 
+						id="headerIcon"
 						src="sap-icon://family-care" 
 						size="40px"
 						class="sapUiTinyMargin"/>
-					<VBox class= "sapUiTinyMargin">
-						<Title text="{i18n>appTitle} " />
-						<Text text="{i18n>appDescription}" />
+					<VBox class= "sapUiTinyMargin" id="headerTextContent">
+						<Title text="{i18n>appTitle} " id="appTitle"/>
+						<Text text="{i18n>appDescription}" id="appSubTitle"/>
 					</VBox>
 				</HBox>
 			</semantic:titleContent>
+			<semantic:headerContent>
+				<layout:Grid >
+					<SearchField value="Under Development"/>
+					<Input type="Text" valueHelpOnly="true" value="Under Development"/>
+					<Input type="Text" valueHelpOnly="true" value="Under Development"/>
+					<Input type="Text" valueHelpOnly="true" value="Under Development"/>
+				</layout:Grid>
+			</semantic:headerContent>
 			<semantic:content>
-
+				<Table id="contentTabel" items="{/Employees}" growing="true" growingThreshold="20">
+					<headerToolbar>
+						<tnt:ToolHeader style="Clear">
+							<tnt:content>
+								<Title text="Employees" />
+								<ToolbarSpacer />
+								<Button text="Create" />
+								<Button text="Delete" />
+							</tnt:content>
+						</tnt:ToolHeader>
+					</headerToolbar>
+					<columns>
+						<Column />
+						<Column id="userIDColumn">
+							<Text text="User ID" id="userIDText"/>
+						</Column>
+						<Column id="dateOfBirthColumn">
+							<Text text="Date of Birth" id="dateOfBirthText"/>
+						</Column>
+						<Column id="registrationDateColumn">
+							<Text text="Registration Date" id="registrationDateText"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem id="employeeListItem" type="Active" press="">
+							<cells>
+								<CheckBox editable="true" />
+								<ObjectIdentifier 
+									text="{UserID}" 
+									id="userIDItem" />
+								<ObjectIdentifier 
+									text=
+										"{
+											path:'DateOfBirth',
+											type: 'sap.ui.model.type.Date'
+										}" 
+									id="dateOfBirthItem" />
+								<ObjectIdentifier 
+									text=
+										"{
+											path: 'RegistrationDate',
+											type: 'sap.ui.model.type.Date'
+										}" 
+									id="registreationDateItem" />	
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
 			</semantic:content>
 		</semantic:SemanticPage>
 </mvc:View>
