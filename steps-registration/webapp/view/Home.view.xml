@@ -54,7 +54,7 @@
 						</Column>
 					</columns>
 					<items>
-						<ColumnListItem id="employeeListItem" type="Active" press="">
+						<ColumnListItem id="employeeListItem" type="Active">
 							<cells>
 								<CheckBox editable="true" />
 								<ObjectIdentifier 
