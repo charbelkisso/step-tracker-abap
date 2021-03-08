@@ -23,10 +23,10 @@
 			</semantic:titleContent>
 			<semantic:headerContent>
 				<layout:Grid >
-					<SearchField value="Under Development"/>
-					<Input type="Text" valueHelpOnly="true" value="Under Development"/>
-					<Input type="Text" valueHelpOnly="true" value="Under Development"/>
-					<Input type="Text" valueHelpOnly="true" value="Under Development"/>
+					<SearchField value="{i18n>HomeView.UnderDevelopment}"/>
+					<Input type="Text" valueHelpOnly="true" value="{i18n>HomeView.UnderDevelopment}"/>
+					<Input type="Text" valueHelpOnly="true" value="{i18n>HomeView.UnderDevelopment}"/>
+					<Input type="Text" valueHelpOnly="true" value="{i18n>HomeView.UnderDevelopment}"/>
 				</layout:Grid>
 			</semantic:headerContent>
 			<semantic:content>
@@ -34,10 +34,10 @@
 					<headerToolbar>
 						<tnt:ToolHeader style="Clear">
 							<tnt:content>
-								<Title text="Employees" />
+								<Title text="{i18n>HomeView.Employees}" />
 								<ToolbarSpacer />
-								<Button text="Create" />
-								<Button text="Delete" />
+								<Button text="{i18n>HomeView.Create}" />
+								<Button text="{i18n>HomeView.Delete}" />
 							</tnt:content>
 						</tnt:ToolHeader>
 					</headerToolbar>
@@ -54,7 +54,7 @@
 						</Column>
 					</columns>
 					<items>
-						<ColumnListItem id="employeeListItem" type="Active">
+						<ColumnListItem id="employeeListItem" type="Navigation" press="onTableItemPress">
 							<cells>
 								<CheckBox editable="true" />
 								<ObjectIdentifier 

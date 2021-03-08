@@ -98,23 +98,20 @@
 				},
 				{
 					"name": "Register",
-					"pattern": "/register/{UserID}",
-					"target": "TargetRegister"
+					"pattern": "register/{UserID}",
+					"target": ["TargetHome", "TargetRegister"]
 				}
 			],
 			"targets": {
 				"TargetHome": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
 					"viewId": "Home",
-					"viewName": "Home"
+					"viewName": "Home",
+					"viewLevel": 1
 				},
 				"TargetRegister": {
-					"viewType": "XML",
-					"transition": "slide",
 					"viewId": "Register",
-					"viewName": "Register"
+					"viewName": "Register",
+					"viewLevel": 1
 				}
 			}
 		}
